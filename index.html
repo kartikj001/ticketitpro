@@ -159,21 +159,32 @@ box-sizing: border-box; /* Ensure padding and border are included in the width *
 }
 
 .filter-container {
-	max-width: 600px;
-	margin: 20px auto;
-	display: flex;
-	gap: 10px;
+max-width: 600px;
+margin: 20px auto;
+display: flex;
+gap: 10px;
 }
 
 .filter-container input {
-	flex: 1;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	box-sizing: border-box;
-	font-size: 16px;
+flex: 1;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 3px;
+box-sizing: border-box;
+font-size: 12px;
 }
 
+@media (max-width: 600px) {
+.filter-container {
+flex-direction: column; /* Stack inputs vertically */
+width: 100%; /* Ensure container takes full width */
+}
+
+.filter-container input {
+width: 100%; /* Make inputs span full width */
+margin-bottom: 10px; /* Add space between inputs */
+}
+}
 
 .tooltip {
 position: absolute;

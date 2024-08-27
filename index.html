@@ -1,0 +1,1024 @@
+<!-- Author : Kartik Jadhav. Copyrights © 2024, Kartik Jadhav, All rights reserved. Any kind of duplication of work is not allowed. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Advanced Ticketing System</title>
+	<link rel="stylesheet" href="styles.css">
+	<style>
+/* General styles */
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f4f4f4;
+	color: #333;
+}
+
+
+
+table {
+	width: 100%; /* Full width */
+	border-collapse: collapse; /* Remove space between table cells */
+	margin-bottom: 20px; /* Space between tables */
+	background-color: #fff; /* White background for the table */
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+th, td {
+	padding: 10px;
+	border: 1px solid #ccc; /* Light grey border */
+	text-align: left; /* Left align text */
+}
+
+th {
+	background-color: Khaki; 
+	font-weight: bold; /* Bold text for headers */
+/*color: white;*/
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9; /* Light grey background for even rows */
+}
+
+tr:hover {
+	background-color: #f1f1f1; /* Slightly darker grey on hover */
+}
+
+h2 {
+	color: #333; /* Dark grey text color */
+	font-size: 24px; /* Larger font size for headings */
+	margin-top: 0; /* Remove top margin */
+}
+
+.form-container {
+	max-width: 600px;
+	margin: 20px auto; /* Reduced margin */
+	padding: 10px; /* Reduced padding */
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+	margin-bottom: 10px; /* Reduced margin */
+}
+
+.form-group label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+.form-group input,
+.form-group textarea {
+	width: 100%;
+	padding: 5px; /* Reduced padding */
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+.form-group textarea {
+	resize: vertical;
+}
+
+
+
+.form-group select {
+	width: 100%;
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	background-color: #fff;
+	font-size: 14px;
+	color: #333;
+	appearance: none; /* Remove default arrow */
+	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 10px;
+}
+
+.form-group select:focus {
+	border-color: #007bff;
+	outline: none;
+}
+
+.button-container, .generate-report-container{
+	display: flex;
+	justify-content: center; /* Center align the buttons */
+	flex-wrap: wrap; /* Allow wrapping on smaller screens */
+	gap: 5px; /* Reduced space between buttons */
+	padding: 10px; /* Reduced padding */
+}
+
+.button-container button,
+.button-container input[type="file"], .generate-report-container button {
+	padding: 5px 10px; /* Reduced padding */
+	font-size: 14px; /* Reduced font size */
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #f4f4f4;
+	cursor: pointer;
+}
+
+.button-container button:hover,
+.button-container input[type="file"]:hover, .generate-report-container button:hover {
+	background-color: #e0e0e0;
+}
+
+@media (max-width: 600px) {
+	.button-container, .generate-report-container {
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.form-row {
+	display: flex;
+	gap: 10px; /* Space between items */
+}
+
+.form-row .form-group {
+	flex: 1; /* Equal width for all items */
+}
+
+.filter-container {
+	max-width: 600px;
+	margin: 20px auto;
+	display: flex;
+	gap: 10px;
+}
+
+.filter-container input {
+	flex: 1;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+
+.tooltip {
+position: absolute;
+background-color: #333;
+color: #fff;
+padding: 5px;
+border-radius: 3px;
+font-size: 18px;
+visibility: hidden;
+z-index: 1000;
+}
+.container {
+width: 100%;
+display: flex;
+justify-content: center;
+}
+#dashboard {
+width: 60%;
+max-width: 625px;
+padding: 20px;
+background-color: #fff;
+border-radius: 5px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+text-align: center;
+box-sizing: border-box;
+}
+#dashboard h2 {
+margin-bottom: 10px; /* Reduced margin */
+font-size: 1.5em; /* Reduced font size */
+color: darkkhaki;
+}
+#dashboardContent {
+display: flex;
+flex-wrap: wrap;
+gap: 10px; /* Reduced gap */
+justify-content: center;
+}
+.dashboard-item {
+background-color: #e9ecef;
+padding: 10px; /* Reduced padding */
+border-radius: 3px;
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+flex: 1 1 calc(33.333% - 20px); /* Reduced width */
+box-sizing: border-box;
+text-align: center;
+transition: transform 0.3s, box-shadow 0.3s;
+}
+.dashboard-item:hover {
+transform: translateY(-5px);
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.dashboard-item strong {
+display: block;
+margin-bottom: 5px; /* Reduced margin */
+font-size: 1em; /* Reduced font size */
+color: #333;
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+.dashboard-item {
+flex: 1 1 calc(50% - 20px); /* 2 items per row */
+}
+}
+@media (max-width: 768px) {
+.dashboard-item {
+flex: 1 1 calc(100% - 20px); /* 1 item per row */
+}
+}
+
+.modal {
+display: none; /* Hidden by default */
+position: fixed;
+z-index: 1;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+overflow: auto;
+background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+.modal-content {
+background-color: #fff;
+margin: 15% auto;
+padding: 20px;
+border: 1px solid #888;
+width: 80%;
+max-width: 500px;
+border-radius: 10px;
+text-align: center;
+}
+.close {
+color: #aaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+}
+.close:hover,
+.close:focus {
+color: black;
+text-decoration: none;
+cursor: pointer;
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<div id="welcomeModal" class="modal">
+<div class="modal-content">
+<span class="close">×</span>
+<p>Welcome to your <strong>Personal Ticketing System!!</strong> <span><br><br><br></span>Please <strong>Create Task</strong> OR <strong>Choose File</strong> to get started.
+</div>
+</div>
+
+	<h1 style="text-align: center;">Personal Ticketing System</h1>
+
+
+</div>
+</div> 
+
+
+<div class="container">
+<div id="dashboard">
+<h2>Dashboard</h2>
+<div id="dashboardContent">
+<!-- Dashboard items will be inserted here -->
+</div>
+</div>
+</div>
+
+
+
+
+<div class="form-container">
+<div class="form-group">
+<label for="projectName">Project Name:</label>
+<input type="text" id="projectName" placeholder="Enter project name">
+</div>
+<div class="form-group">
+<label for="taskDescription">Task Type:</label>
+<select id="taskDescription">
+<option value="" disabled selected>Select task type</option>
+<option value="Operational">Operational</option>
+<option value="RnI">RnI</option>
+<option value="Request">Request</option>
+<option value="Inform">Inform</option>
+<option value="Transfer">Transfer</option>
+<option value="Marketing">Marketing</option>
+</select>
+</div>
+<div class="form-row">
+<div class="form-group">
+<label for="assignedUser">Assign to User:</label>
+<input type="text" id="assignedUser" placeholder="Enter user name">
+</div>
+<div class="form-group">
+<label for="manhours">Manhours:</label>
+<input type="number" id="manhours" min="0" step="0.1" placeholder="Enter manhours">
+</div>
+<div class="form-group">
+<label for="dueDate">Due Date:</label>
+<input type="date" id="dueDate" placeholder="Select due date">
+</div>
+</div>
+<div class="form-group">
+<label for="comment">Comment:</label>
+<textarea id="comment" rows="3" cols="30" placeholder="Enter your comment"></textarea>
+</div>
+</div>
+
+<div class="button-container">
+	<button onclick="createTask()" >Create Task</button>
+	<button onclick="updateTask()">Update Task</button>
+	<button onclick="cancelEdit()">Cancel</button>
+	<button onclick="downloadData()">Download Data</button>
+	<input type="file" id="fileInput" onchange="uploadData()">
+	<button onclick="copyTaskData()">Copy Task Data</button>
+</div>
+
+
+
+<div class="filter-container">
+	<input type="text" id="filterProjectName" placeholder="Filter by Project Name" oninput="filterTasks()">
+	<input type="text" id="filterAssignedUser" placeholder="Filter by Assigned User" oninput="filterTasks()">
+</div>
+
+
+<br>
+
+
+<h2 style="text-align: center;">Active Tasks</h2>
+
+<table id="taskTable">
+	<thead>
+		<tr>
+			<th>Select</th>
+			<th>#</th>
+			<th onclick="sortTable('projectName')">Project Name</th>
+			<th>Task Type</th>
+			<th onclick="sortTable('assignedUser')">Assigned User</th>
+			<th onclick="sortTable('assignedDate')">Assigned Date</th>
+			<th onclick="sortTable('dueDate')">Due Date</th>
+			<th onclick="sortTable('status')">Status</th>
+			<th>Comments</th>
+			<th>Manhours</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+
+<div class="generate-report-container">
+	<button onclick="generateReport()">Generate Excel Report</button>
+	<button id="bookmarkButton" class="bookmark-button">Bookmark this page</button>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<p style="text-align:center;"> Copyright © 2024, Kartik Jadhav, All rights reserved.</p>
+
+
+<!-- <div class="tooltip" id="tooltip">Copy text</div> -->
+
+
+
+<div id="tooltip" class="tooltip"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+<script>
+
+// Get the modal
+var modal = document.getElementById("welcomeModal");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the page loads, open the modal
+window.onload = function() {
+modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+if (event.target == modal) {
+modal.style.display = "none";
+}
+}
+
+
+	let tasks = [];
+	let editIndex = -1;
+	let sortOrder = {
+		projectName: 'asc',
+		assignedUser: 'asc',
+		assignedDate: 'asc',
+		dueDate: 'asc',
+		status: 'asc'
+	};
+
+
+	function copyToClipboard(text) {
+		navigator.clipboard.writeText(text).then(() => {
+			alert('Copied to clipboard: ' + text);
+		}).catch(err => {
+			console.error('Failed to copy text: ', err);
+		});
+	}
+
+
+
+
+
+
+
+	function generateReport() {
+		if (tasks.length === 0) {
+			alert('No tasks available to generate a report.');
+			return;
+		}
+
+// Create a new workbook
+		const wb = XLSX.utils.book_new();
+
+// Create a worksheet for the dashboard
+		const totalTasks = tasks.length;
+		const totalManhours = tasks.reduce((sum, task) => sum + parseFloat(task.manhours), 0);
+		const completedTasks = tasks.filter(task => task.status === 'Complete').length;
+		const pendingTasks = tasks.filter(task => task.status === 'Pending').length;
+		const averageManhours = (totalManhours / totalTasks).toFixed(2);
+
+		const dashboardData = [
+			["Metric", "Value"],
+			["Total Tasks", totalTasks],
+			["Total Manhours", totalManhours],
+			["Completed Tasks", completedTasks],
+			["Pending Tasks", pendingTasks],
+			["Average Manhours per Task", averageManhours]
+			];
+
+		const wsDashboard = XLSX.utils.aoa_to_sheet(dashboardData);
+		XLSX.utils.book_append_sheet(wb, wsDashboard, "Dashboard");
+
+// Create a worksheet for tasks
+		const wsData = [
+			["Project Name", "Task Type", "Assigned User", "Assigned Date", "Due Date", "Status", "Comments", "Manhours"]
+			];
+
+		tasks.forEach(task => {
+			wsData.push([
+				task.projectName,
+				task.taskDescription,
+				task.assignedUser,
+				task.assignedDate,
+				task.dueDate,
+				task.status,
+				task.comment,
+				task.manhours
+				]);
+		});
+
+		const ws = XLSX.utils.aoa_to_sheet(wsData);
+		XLSX.utils.book_append_sheet(wb, ws, "Tasks");
+
+// Move the dashboard sheet to the first position
+		wb.SheetNames = ["Dashboard", "Tasks"];
+
+// Save the workbook
+		XLSX.writeFile(wb, "task_report.xlsx");
+	}
+
+	// function showTooltip(event, text) {
+	// 	const tooltip = document.getElementById('tooltip');
+	// 	tooltip.innerText = text;
+	// 	tooltip.style.visibility = 'visible';
+	// 	tooltip.style.top = `${event.clientY + 10}px`;
+	// 	tooltip.style.left = `${event.clientX + 10}px`;
+	// }
+
+	function showTooltip(event, text) {
+const tooltip = document.getElementById('tooltip');
+tooltip.innerText = text;
+tooltip.style.visibility = 'visible';
+tooltip.style.position = 'fixed'; // Ensure the tooltip is fixed
+tooltip.style.top = '10px'; // Adjust as needed
+tooltip.style.left = '10px'; // Adjust as needed
+}
+
+	function hideTooltip() {
+		const tooltip = document.getElementById('tooltip');
+		tooltip.style.visibility = 'hidden';
+	}
+
+
+
+
+
+// Set the minimum date for the due date input to today
+	document.addEventListener('DOMContentLoaded', () => {
+		const dueDateInput = document.getElementById('dueDate');
+		const today = new Date().toISOString().split('T')[0];
+		dueDateInput.setAttribute('min', today);
+	});
+
+	function sortTable(column) {
+		const order = sortOrder[column] === 'asc' ? 1 : -1;
+		tasks.sort((a, b) => {
+			if (a[column] < b[column]) return -1 * order;
+			if (a[column] > b[column]) return 1 * order;
+			return 0;
+		});
+		sortOrder[column] = sortOrder[column] === 'asc' ? 'desc' : 'asc';
+		renderTasks();
+	}
+
+	function createTask() {
+		const projectName = document.getElementById('projectName').value;
+		const taskDescription = document.getElementById('taskDescription').value;
+		const assignedUser = document.getElementById('assignedUser').value;
+		const dueDate = document.getElementById('dueDate').value;
+		const assignedDate = new Date().toLocaleDateString('en-CA');
+const comment = document.getElementById('comment').value; // New comment field
+const manhours = document.getElementById('manhours').value; // Capture manhours input
+
+if (projectName === '' || taskDescription === '' || assignedUser === '') {
+	alert('Please fill in all fields except due date, manhours and comments.');
+	return;
+}
+
+const task = {
+	projectName,
+	taskDescription,
+	assignedUser,
+// assignerName,
+	assignedDate,
+	dueDate: dueDate || 'No due date',
+	status: 'Pending',
+comment, // Include comment in the task object
+manhours // Store manhours in task object
+};
+
+tasks.push(task);
+renderTasks();
+
+document.getElementById('projectName').value = '';
+document.getElementById('taskDescription').value = '';
+document.getElementById('assignedUser').value = '';
+// document.getElementById('assignerName').value = '';
+document.getElementById('dueDate').value = '';
+document.getElementById('comment').value = ''; // Clear the comment field
+document.getElementById('manhours').value = ''; // Clear manhours input
+}
+
+function renderTasks() {
+	const taskTableBody = document.getElementById('taskTable').getElementsByTagName('tbody')[0];
+	taskTableBody.innerHTML = '';
+
+	tasks.forEach((task, index) => {
+		const row = taskTableBody.insertRow();
+		const selectCell = row.insertCell(0);
+		const checkbox = document.createElement('input');
+		checkbox.type = 'checkbox';
+		checkbox.className = 'task-checkbox';
+		selectCell.appendChild(checkbox);
+
+row.insertCell(1).innerText = index + 1; // Serial number
+
+// row.insertCell(2).innerText = task.projectName;
+const projectNameCell = row.insertCell(2);
+projectNameCell.innerText = task.projectName;
+projectNameCell.style.cursor = 'pointer';
+projectNameCell.onmouseover = (event) => showTooltip(event, 'Click to copy text!');
+projectNameCell.onmouseout = hideTooltip;
+projectNameCell.onclick = () => copyToClipboard(task.projectName);
+
+
+
+row.insertCell(3).innerText = task.taskDescription;
+// row.insertCell(4).innerText = task.assignedUser;
+const assignedUserCell = row.insertCell(4);
+assignedUserCell.innerText = task.assignedUser;
+assignedUserCell.style.cursor = 'pointer';
+assignedUserCell.onmouseover = (event) => showTooltip(event, 'Click to copy text!');
+assignedUserCell.onmouseout = hideTooltip;
+assignedUserCell.onclick = () => copyToClipboard(task.assignedUser);
+
+row.insertCell(5).innerText = task.assignedDate;
+row.insertCell(6).innerText = task.dueDate;
+row.insertCell(7).innerText = task.status;
+row.insertCell(8).innerText = task.comment; // Display comment as plain text
+row.insertCell(9).innerText = task.manhours; // Display manhours as plain text
+
+const actionsCell = row.insertCell(10);
+const actionSelect = document.createElement('select');
+actionSelect.onchange = () => handleActionChange(index, actionSelect.value);
+
+const actions = ['Select Action', 'Delete', 'Complete', 'Edit', 'Initiate', 'Pending'];
+actions.forEach(action => {
+	const option = document.createElement('option');
+	option.value = action.toLowerCase();
+	option.innerText = action;
+	actionSelect.appendChild(option);
+});
+
+actionsCell.appendChild(actionSelect);
+});
+
+
+updateDashboard();
+
+
+}
+
+
+
+function filterTasks() {
+	const filterProjectName = document.getElementById('filterProjectName').value.toLowerCase();
+	const filterAssignedUser = document.getElementById('filterAssignedUser').value.toLowerCase();
+
+	const filteredTasks = tasks.filter(task => {
+		const projectNameMatch = task.projectName.toLowerCase().includes(filterProjectName);
+		const assignedUserMatch = task.assignedUser.toLowerCase().includes(filterAssignedUser);
+		return projectNameMatch && assignedUserMatch;
+	});
+
+	renderFilteredTasks(filteredTasks);
+}
+
+function renderFilteredTasks(filteredTasks) {
+	const taskTableBody = document.getElementById('taskTable').getElementsByTagName('tbody')[0];
+	taskTableBody.innerHTML = '';
+
+	filteredTasks.forEach((task, index) => {
+		const row = taskTableBody.insertRow();
+		const selectCell = row.insertCell(0);
+		const checkbox = document.createElement('input');
+		checkbox.type = 'checkbox';
+		checkbox.className = 'task-checkbox';
+		selectCell.appendChild(checkbox);
+
+		row.insertCell(1).innerText = index + 1;
+
+
+// row.insertCell(2).innerText = task.projectName;
+		const projectNameCell = row.insertCell(2);
+		projectNameCell.innerText = task.projectName;
+		projectNameCell.style.cursor = 'pointer';
+		projectNameCell.onmouseover = (event) => showTooltip(event, 'Click to copy text!');
+		projectNameCell.onmouseout = hideTooltip;
+		projectNameCell.onclick = () => copyToClipboard(task.projectName);
+
+
+
+
+		row.insertCell(3).innerText = task.taskDescription;
+// row.insertCell(4).innerText = task.assignedUser;
+		const assignedUserCell = row.insertCell(4);
+		assignedUserCell.innerText = task.assignedUser;
+		assignedUserCell.style.cursor = 'pointer';
+		assignedUserCell.onmouseover = (event) => showTooltip(event, 'Click to copy text!');
+		assignedUserCell.onmouseout = hideTooltip;
+		assignedUserCell.onclick = () => copyToClipboard(task.assignedUser);
+
+
+		row.insertCell(5).innerText = task.assignedDate;
+		row.insertCell(6).innerText = task.dueDate;
+		row.insertCell(7).innerText = task.status;
+		row.insertCell(8).innerText = task.comment;
+		row.insertCell(9).innerText = task.manhours;
+
+		const actionsCell = row.insertCell(10);
+		const actionSelect = document.createElement('select');
+		actionSelect.onchange = () => handleActionChange(index, actionSelect.value);
+
+		const actions = ['Select Action', 'Delete', 'Complete', 'Edit', 'Initiate', 'Pending'];
+		actions.forEach(action => {
+			const option = document.createElement('option');
+			option.value = action.toLowerCase();
+			option.innerText = action;
+			actionSelect.appendChild(option);
+		});
+
+		actionsCell.appendChild(actionSelect);
+	});
+
+
+
+	updateDashboard();
+}
+
+
+// Set interval to update the dashboard every 5 seconds
+setInterval(updateDashboard, 5000);
+
+// Initial dashboard update
+updateDashboard();
+
+
+function handleActionChange(index, action) {
+	switch (action) {
+	case 'delete':
+		confirmDeleteTask(index);
+		break;
+	case 'complete':
+		completeTask(index);
+		break;
+	case 'edit':
+		editTask(index);
+		break;
+	case 'initiate':
+		initiateTask(index);
+		break;
+	case 'pending':
+		setPending(index);
+		break;
+	default:
+		break;
+	}
+}
+
+
+
+
+function copyTaskData() {
+	const checkboxes = document.querySelectorAll('.task-checkbox');
+	const selectedTasks = Array.from(checkboxes).filter(checkbox => checkbox.checked);
+
+	if (selectedTasks.length === 0) {
+		alert('No task selected. Please select at least one task to copy.');
+		return;
+	}
+
+// Add your logic to copy the selected tasks data here
+	const table = document.getElementById('taskTable');
+	const rows = table.getElementsByTagName('tr');
+	let data = '';
+
+for (let i = 1; i < rows.length; i++) { // Start from 1 to skip header row
+	const checkbox = rows[i].querySelector('.task-checkbox');
+	if (checkbox && checkbox.checked) {
+		const cells = rows[i].getElementsByTagName('td');
+const rowData = `
+------------------------------------
+Hi, please refer following task: 
+
+Project Name: ${cells[2].innerText}
+
+Task Type: ${cells[3].innerText}
+Assigned Date: ${cells[5].innerText}
+Assigned Workhours: ${cells[9].innerText}
+-
+Comment: 
+${cells[8].innerText}
+
+Due Date: ${cells[6].innerText}
+
+Thank you !
+------------------------------------
+
+
+`;
+data += rowData.trim() + '\n\n'; // Add extra newline for separation
+}
+}
+
+
+navigator.clipboard.writeText(data.trim()).then(() => {
+	alert('Selected task data copied to clipboard!');
+}).catch(err => {
+	console.error('Failed to copy text: ', err);
+});
+}
+
+window.addEventListener('beforeunload', function (e) {
+// Custom message (most browsers will ignore this and show a generic message)
+	const confirmationMessage = 'Are you sure you want to leave? Any unsaved changes will be lost.';
+
+e.preventDefault(); // Standard for most browsers
+e.returnValue = confirmationMessage; // For some older browsers
+
+return confirmationMessage; // For some older browsers
+});
+
+
+function cancelEdit() {
+	document.getElementById('projectName').value = '';
+	document.getElementById('taskDescription').value = '';
+	document.getElementById('assignedUser').value = '';
+// document.getElementById('assignerName').value = '';
+	document.getElementById('dueDate').value = '';
+document.getElementById('comment').value = ''; // Clear comment field
+editIndex = -1; // Reset editIndex to -1
+renderTasks(); // Re-render tasks to exit edit mode
+}
+
+function updateComment(index, newComment) {
+	tasks[index].comment = newComment;
+}
+
+function sortTasksByDueDate(descending = false) {
+	tasks.sort((a, b) => {
+		const dateA = new Date(a.dueDate === 'No due date' ? '9999-12-31' : a.dueDate);
+		const dateB = new Date(b.dueDate === 'No due date' ? '9999-12-31' : b.dueDate);
+		return descending ? dateB - dateA : dateA - dateB;
+	});
+}
+
+function confirmDeleteTask(index) {
+	const confirmed = confirm('Are you sure you want to delete this task?');
+	if (confirmed) {
+		deleteTask(index);
+	}
+}
+
+function deleteTask(index) {
+	tasks.splice(index, 1);
+	renderTasks();
+}
+
+function completeTask(index) {
+	tasks[index].status = `Closed - ${new Date().toLocaleDateString()}`;
+	renderTasks();
+}
+
+function initiateTask(index) {
+	tasks[index].status = `Opened - ${new Date().toLocaleDateString()}`;
+	renderTasks();
+}
+
+function setPending(index) {
+	tasks[index].status = `Pending`;
+	renderTasks();
+}
+
+function editTask(index) {
+	const task = tasks[index];
+	document.getElementById('projectName').value = task.projectName;
+	document.getElementById('taskDescription').value = task.taskDescription;
+	document.getElementById('assignedUser').value = task.assignedUser;
+// document.getElementById('assignerName').value = task.assignerName;
+	document.getElementById('dueDate').value = task.dueDate === 'No due date' ? '' : task.dueDate;
+document.getElementById('comment').value = task.comment; // Set comment field value
+document.getElementById('manhours').value = task.manhours; // Set manhours field value
+editIndex = index;
+renderTasks(); // Re-render tasks to show the textarea for the comment
+
+}
+
+function updateTask() {
+	if (editIndex === -1) {
+		alert('No task selected for editing.');
+		return;
+	}
+
+	const projectName = document.getElementById('projectName').value;
+	const taskDescription = document.getElementById('taskDescription').value;
+	const assignedUser = document.getElementById('assignedUser').value;
+
+	const dueDate = document.getElementById('dueDate').value;
+const comment = document.getElementById('comment').value; // Capture updated comment
+const manhours = document.getElementById('manhours').value; // Capture updated manhours
+
+if (projectName === '' || taskDescription === '' || assignedUser === '') {
+	alert('Please fill in all fields except due date.');
+	return;
+}
+
+tasks[editIndex].projectName = projectName;
+tasks[editIndex].taskDescription = taskDescription;
+tasks[editIndex].assignedUser = assignedUser;
+
+tasks[editIndex].dueDate = dueDate || 'No due date';
+tasks[editIndex].comment = comment; // Save updated comment
+tasks[editIndex].manhours = manhours; // Save updated manhours
+
+renderTasks();
+
+document.getElementById('projectName').value = '';
+document.getElementById('taskDescription').value = '';
+document.getElementById('assignedUser').value = '';
+
+document.getElementById('dueDate').value = '';
+document.getElementById('comment').value = ''; // Clear comment field
+document.getElementById('manhours').value = ''; // Clear manhours field
+
+editIndex = -1; // Reset editIndex to -1 after updating the task
+}
+
+function downloadData() {
+	const dataStr = JSON.stringify(tasks, null, 2);
+	const blob = new Blob([dataStr], { type: 'application/json' });
+	const today = new Date();
+const dateStr = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+const fileName = `Task_Status_${dateStr}.json`;
+const url = URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = fileName;
+a.click();
+URL.revokeObjectURL(url);
+}
+
+
+
+function uploadData() {
+	const fileInput = document.getElementById('fileInput');
+	const file = fileInput.files[0];
+	const reader = new FileReader();
+
+	reader.onload = function(event) {
+		tasks = JSON.parse(event.target.result);
+		renderTasks();
+	};
+
+	reader.readAsText(file);
+}
+
+
+
+
+
+
+function fetchDashboardData() {
+const totalTasks = tasks.length;
+const completedTasks = tasks.filter(task => task.status.startsWith('Closed')).length;
+const pendingTasks = tasks.filter(task => task.status === 'Pending').length;
+const totalManhours = tasks.reduce((sum, task) => sum + parseFloat(task.manhours || 0), 0);
+const averageManhours = totalTasks ? (totalManhours / totalTasks).toFixed(2) : 0;
+const projectProgress = totalTasks ? `${Math.round((completedTasks / totalTasks) * 100)}%` : '0%';
+
+return [
+{ title: 'Total Tasks', value: totalTasks },
+{ title: 'Completed Tasks', value: completedTasks },
+{ title: 'Pending Tasks', value: pendingTasks },
+{ title: 'Total Manhours', value: totalManhours },
+{ title: 'Average Manhours per Task', value: averageManhours },
+{ title: 'Total Progress', value: projectProgress }
+];
+}
+
+// Function to update the dashboard
+function updateDashboard() {
+const data = fetchDashboardData();
+const dashboardContent = document.getElementById('dashboardContent');
+dashboardContent.innerHTML = ''; // Clear existing content
+
+data.forEach(item => {
+const div = document.createElement('div');
+div.className = 'dashboard-item';
+div.innerHTML = `<strong>${item.title}:</strong> ${item.value}`;
+dashboardContent.appendChild(div);
+});
+}
+
+document.getElementById('bookmarkButton').addEventListener('click', function() {
+const title = document.title;
+const url = window.location.href;
+
+if (window.sidebar && window.sidebar.addPanel) { // Firefox <23
+window.sidebar.addPanel(title, url, '');
+} else if (window.external && ('AddFavorite' in window.external)) { // IE Favorites
+window.external.AddFavorite(url, title);
+} else if (window.opera && window.print) { // Opera <15
+this.title = title;
+return true;
+} else { // Other browsers (mainly WebKit - Chrome/Safari)
+alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Cmd' : 'Ctrl') + '+D to bookmark this page.');
+}
+});
+
+
+
+
+</script>
+</body>
+</html>
+
+

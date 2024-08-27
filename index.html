@@ -263,11 +263,13 @@ width: 100%;
 height: 100%;
 overflow: auto;
 background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .modal-content {
 background-color: #fff;
-margin: 15% auto;
 padding: 20px;
 border: 1px solid #888;
 width: 80%;
@@ -294,22 +296,20 @@ cursor: pointer;
 @media (max-width: 768px) {
 .modal-content {
 width: 90%; /* Increase width for smaller screens */
-margin: 20% auto; /* Adjust margin for better positioning */
+padding: 15px; /* Adjust padding for smaller screens */
 }
 }
 
 @media (max-width: 480px) {
 .modal-content {
 width: 95%; /* Further increase width for very small screens */
-margin: 25% auto; /* Adjust margin for better positioning */
-padding: 15px; /* Adjust padding for smaller screens */
+padding: 10px; /* Adjust padding for smaller screens */
 }
 
 .close {
 font-size: 24px; /* Adjust close button size */
 }
 }
-
 
 </style>
 

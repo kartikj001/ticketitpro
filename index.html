@@ -8,340 +8,348 @@
 	<title>Advanced Ticketing System</title>
 	<link rel="stylesheet" href="styles.css">
 	<style>
-/* General styles */
+ /* General styles */
 body {
-	font-family: Arial, Helvetica, sans-serif;
-	background-color: #f4f4f4;
-	color: #333;
-	font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #1e1e1e; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
 }
 
-
-
 table {
-width: 100%; /* Full width */
-border-collapse: collapse; /* Remove space between table cells */
-margin-bottom: 20px; /* Space between tables */
-background-color: #fff; /* White background for the table */
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  width: 100%; /* Full width */
+  border-collapse: collapse; /* Remove space between table cells */
+  margin-bottom: 20px; /* Space between tables */
+  background-color: #2d2d2d; /* Dark background for the table */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
 }
 
 th, td {
-padding: 10px;
-border: 1px solid #ccc; /* Light grey border */
-text-align: left; /* Left align text */
+  padding: 10px;
+  border: 1px solid #444; /* Darker border */
+  text-align: left; /* Left align text */
 }
 
 th {
-background-color: Khaki; 
-font-weight: bold; /* Bold text for headers */
-/* color: white; */
+  background-color: #373b9c; /* Accent color for headers */
+  color: white; /* Light text color */
 }
 
 tr:nth-child(even) {
-background-color: #f9f9f9; /* Light grey background for even rows */
+  background-color: #2a2a2a; /* Darker grey background for even rows */
 }
 
 tr:hover {
-background-color: #f1f1f1; /* Slightly darker grey on hover */
+  background-color: #3a3a3a; /* Slightly lighter grey on hover */
 }
 
 h2 {
-color: #333; /* Dark grey text color */
-font-size: 12px; /* Larger font size for headings */
-margin-top: 0; /* Remove top margin */
+  color: #e0e0e0; /* Light grey text color */
+  font-size: 16px; /* Adjust font size for better visibility */
+  margin-top: 0; /* Remove top margin */
 }
 
 /* Styles for the table container */
 .table-container {
-overflow-x: auto; /* Enable horizontal scrolling */
--webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
 }
 
-
-
-
 .form-container {
-	max-width: 600px;
-	margin: 20px auto; /* Reduced margin */
-	padding: 10px; /* Reduced padding */
-	background-color: #fff;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto; /* Reduced margin */
+  padding: 10px; /* Reduced padding */
+  background-color: #2d2d2d; /* Dark background */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 .form-group {
-	margin-bottom: 10px; /* Reduced margin */
+  margin-bottom: 10px; /* Reduced margin */
 }
 
 .form-group label {
-	display: block;
-	margin-bottom: 5px;
-	font-weight: bold;
-	color: #555;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #e0e0e0; /* Light text color */
 }
 
 .form-group input,
 .form-group textarea {
-	width: 100%;
-	padding: 5px; /* Reduced padding */
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	box-sizing: border-box;
+  width: 100%;
+  padding: 5px; /* Reduced padding */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #333; /* Dark background */
+  color: #e0e0e0; /* Light text color */
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-	border-color: #007bff;
-	outline: none;
+  border-color: #373b9c; /* Accent color on focus */
+  outline: none;
 }
 
 .form-group textarea {
-	resize: vertical;
+  resize: vertical;
 }
 
-
-
 .form-group select {
-	width: 100%;
-	padding: 5px;
-	border: 1px solid #ccc;
-	border-radius: 3px;
-	box-sizing: border-box;
-	background-color: #fff;
-	font-size: 12px;
-	color: #333;
-	appearance: none; /* Remove default arrow */
-	background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23333" d="M2 0L0 2h4z"/></svg>');
-	background-repeat: no-repeat;
-	background-position: right 10px center;
-	background-size: 10px;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #444; /* Darker border */
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #333; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  appearance: none; /* Remove default arrow */
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23e0e0e0" d="M2 0L0 2h4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
 }
 
 .form-group select:focus {
-	border-color: #007bff;
-	outline: none;
+  border-color: #373b9c; /* Accent color on focus */
+  outline: none;
 }
 
 .button-container, .generate-report-container {
-display: flex;
-justify-content: center; /* Center align the buttons */
-flex-wrap: wrap; /* Allow wrapping on smaller screens */
-gap: 5px; /* Reduced space between buttons */
-padding: 10px; /* Reduced padding */
+  display: flex;
+  justify-content: center; /* Center align the buttons */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  gap: 5px; /* Reduced space between buttons */
+  padding: 10px; /* Reduced padding */
 }
 
 .button-container button,
 .button-container input[type="file"], .generate-report-container button {
-padding: 5px 10px; /* Reduced padding */
-font-size: 12px; /* Reduced font size */
-border: 1px solid #ccc;
-border-radius: 3px;
-background-color: #f4f4f4;
-cursor: pointer;
+  padding: 5px 10px; /* Reduced padding */
+  font-size: 12px; /* Reduced font size */
+  border: 1px solid #444; /* Darker border */
+  border-radius: 3px;
+  background-color:  #2a2a2a; /* Accent color */
+  color: #e0e0e0; /* Light text color */
+  cursor: pointer;
 }
 
 .button-container button:hover,
 .button-container input[type="file"]:hover, .generate-report-container button:hover {
-background-color: #e0e0e0;
+  background-color: #373b9c; /* Darker background on hover */
 }
 
 @media (max-width: 600px) {
-.button-container, .generate-report-container {
-flex-direction: column;
-align-items: center;
-}
+  .button-container, .generate-report-container {
+    flex-direction: column;
+    align-items: center;
+  }
 
-.button-container button,
-.button-container input[type="file"], .generate-report-container button {
-width: 100%; /* Make buttons span the full width */
-box-sizing: border-box; /* Ensure padding and border are included in the width */
-}
+  .button-container button,
+  .button-container input[type="file"], .generate-report-container button {
+    width: 100%; /* Make buttons span the full width */
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
+  }
 }
 
 .form-row {
-	display: flex;
-	gap: 10px; /* Space between items */
+  display: flex;
+  gap: 10px; /* Space between items */
 }
 
 .form-row .form-group {
-	flex: 1; /* Equal width for all items */
+  flex: 1; /* Equal width for all items */
 }
 
 .filter-container {
-max-width: 600px;
-margin: 20px auto;
-display: flex;
-gap: 10px;
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
 }
 
 .filter-container input {
-flex: 1;
-padding: 10px;
-border: 1px solid #ccc;
-border-radius: 3px;
-box-sizing: border-box;
-font-size: 12px;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #444; /* Darker border */
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #333; /* Dark background */
+  color: #e0e0e0; /* Light text color */
+  font-size: 12px;
 }
 
 @media (max-width: 600px) {
-.filter-container {
-flex-direction: column; /* Stack inputs vertically */
-width: 100%; /* Ensure container takes full width */
-}
+  .filter-container {
+    flex-direction: column; /* Stack inputs vertically */
+    width: 100%; /* Ensure container takes full width */
+  }
 
-.filter-container input {
-width: 100%; /* Make inputs span full width */
-margin-bottom: 10px; /* Add space between inputs */
+  .filter-container input {
+    width: 100%; /* Make inputs span full width */
+    margin-bottom: 10px; /* Add space between inputs */
+  }
 }
-}
-
-
 
 .tooltip {
-position: absolute;
-background-color: #333;
-color: #fff;
-padding: 5px;
-border-radius: 3px;
-font-size: 12px;
-visibility: hidden;
-z-index: 1000;
-}
-.container {
-width: 100%;
-display: flex;
-justify-content: center;
+  position: absolute;
+  background-color: #333; /* Dark background */
+  color: #fff; /* Light text color */
+  padding: 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  visibility: hidden;
+  z-index: 1000;
 }
 
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
 #dashboard {
-width: 60%;
-max-width: 625px;
-padding: 20px;
-background-color: #fff;
-border-radius: 5px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-text-align: center;
-box-sizing: border-box;
+  width: 60%;
+  max-width: 625px;
+  padding: 20px;
+  background-color: #2d2d2d; /* Dark background */
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  box-sizing: border-box;
 }
 
 #dashboard h2 {
-margin-bottom: 10px; /* Reduced margin */
-font-size: 1em; /* Reduced font size */
-color: navy;
+  margin-bottom: 10px; /* Reduced margin */
+  font-size: 1em; /* Reduced font size */
+  color: #e0e0e0; /* Light text color */
 }
 
 #dashboardContent {
-display: flex;
-flex-wrap: wrap;
-gap: 10px; /* Reduced gap */
-justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduced gap */
+  justify-content: center;
 }
 
 .dashboard-item {
-background-color: #e9ecef;
-padding: 10px; /* Reduced padding */
-border-radius: 3px;
-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-flex: 1 1 calc(33.333% - 20px); /* Reduced width */
-box-sizing: border-box;
-text-align: center;
-transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #333; /* Dark background */
+  padding: 10px; /* Reduced padding */
+  border-radius: 3px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  flex: 1 1 calc(33.333% - 20px); /* Reduced width */
+  box-sizing: border-box;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .dashboard-item:hover {
-transform: translateY(-5px);
-box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
 .dashboard-item strong {
-display: block;
-margin-bottom: 5px; /* Reduced margin */
-font-size: 1em; /* Reduced font size */
-color: #333;
+  display: block;
+  margin-bottom: 5px; /* Reduced margin */
+  font-size: 1em; /* Reduced font size */
+  color: #e0e0e0; /* Light text color */
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1200px) {
-.dashboard-item {
-flex: 1 1 calc(50% - 20px); /* 2 items per row */
-}
+  .dashboard-item {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row */
+  }
 }
 
 @media (max-width: 768px) {
-.dashboard-item {
-flex: 1 1 calc(100% - 20px); /* 1 item per row */
-}
+  .dashboard-item {
+    flex: 1 1 calc(100% - 20px); /* 1 item per row */
+  }
 }
 
 @media (max-width: 480px) {
-.dashboard-item {
-flex: 1 1 calc(50% - 20px); /* 2 items per row */
+  .dashboard-item {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row */
+  }
 }
-}
-
-
 
 .modal {
-display: none; /* Hidden by default */
-position: fixed;
-z-index: 1;
-left: 0;
-top: 0;
-width: 100%;
-height: 100%;
-overflow: auto;
-background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-display: flex;
-justify-content: center;
-align-items: center;
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-background-color: #fff;
-padding: 20px;
-border: 1px solid #888;
-width: 100%;
-max-width: 100%;
-border-radius: 3px;
-text-align: center;
+  background-color: #2d2d2d; /* Dark background */
+  padding: 20px;
+  border: 1px solid #444; /* Darker border */
+  width: 100%;
+  max-width: 100%;
+  border-radius: 3px;
+  text-align: center;
 }
 
 .close {
-color: #aaa;
-float: right;
-font-size: 12px;
-font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-color: black;
-text-decoration: none;
-cursor: pointer;
+  color: #e0e0e0; /* Light text color on hover */
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 768px) {
-.modal-content {
-width: 90%; /* Increase width for smaller screens */
-padding: 15px; /* Adjust padding for smaller screens */
-}
+  .modal-content {
+    width: 90%; /* Increase width for smaller screens */
+    padding: 15px; /* Adjust padding for smaller screens */
+  }
 }
 
 @media (max-width: 480px) {
-.modal-content {
-width: 95%; /* Further increase width for very small screens */
-padding: 10px; /* Adjust padding for smaller screens */
+  .modal-content {
+    width: 95%; /* Further increase width for very small screens */
+    padding: 10px; /* Adjust padding for smaller screens */
+  }
+
+  .close {
+    font-size: 20px; /* Adjust close button size */
+  }
 }
 
-.close {
-font-size: 20px; /* Adjust close button size */
-}
+/*#summarizeButton {
+    background-color: #4a148c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+#summarizeButton:hover {
+    background-color: #6d28d9; 
+}
+*/
 
 </style>
 
@@ -384,12 +392,11 @@ font-size: 20px; /* Adjust close button size */
 <label for="taskDescription">Task Type:</label>
 <select id="taskDescription">
 <option value="" disabled selected>Select task type</option>
-<option value="Operational">Operational</option>
-<option value="RnI">RnI</option>
-<option value="Request">Request</option>
-<option value="Inform">Inform</option>
-<option value="Transfer">Transfer</option>
-<option value="Marketing">Marketing</option>
+
+<option value="Business">Business</option>
+<option value="Job">Job</option>
+<option value="Personal">Personal</option>
+<option value="Other">Other</option>
 </select>
 </div>
 <div class="form-row">
@@ -426,7 +433,11 @@ font-size: 20px; /* Adjust close button size */
 <div class="filter-container">
 	<input type="text" id="filterProjectName" placeholder="Filter by Project Name" oninput="filterTasks()">
 	<input type="text" id="filterAssignedUser" placeholder="Filter by Assigned" oninput="filterTasks()">
+	<input type="text" id="filterTaskType" placeholder="Filter by Task Type" onkeyup="filterTasks()">	
+
 </div>
+
+
 
 
 <br>
@@ -462,6 +473,7 @@ font-size: 20px; /* Adjust close button size */
 <div class="generate-report-container">
 	<button onclick="generateReport()">Generate Excel Report</button>
 	<button id="bookmarkButton" class="bookmark-button">Bookmark this page</button>
+	<button id="summarizeButton" onclick="summarizeFilteredTasks()">Summarize</button>
 </div>
 
 <br>
@@ -737,15 +749,17 @@ updateDashboard();
 
 function filterTasks() {
 	const filterProjectName = document.getElementById('filterProjectName').value.toLowerCase();
-	const filterAssignedUser = document.getElementById('filterAssignedUser').value.toLowerCase();
+    const filterAssignedUser = document.getElementById('filterAssignedUser').value.toLowerCase();
+    const filterTaskType = document.getElementById('filterTaskType').value.toLowerCase(); // New filter input
 
-	const filteredTasks = tasks.filter(task => {
-		const projectNameMatch = task.projectName.toLowerCase().includes(filterProjectName);
-		const assignedUserMatch = task.assignedUser.toLowerCase().includes(filterAssignedUser);
-		return projectNameMatch && assignedUserMatch;
-	});
+    const filteredTasks = tasks.filter(task => {
+        const projectNameMatch = task.projectName.toLowerCase().includes(filterProjectName);
+        const assignedUserMatch = task.assignedUser.toLowerCase().includes(filterAssignedUser);
+        const taskTypeMatch = task.taskDescription.toLowerCase().includes(filterTaskType); // Filter by task type
+        return projectNameMatch && assignedUserMatch && taskTypeMatch;
+    });
 
-	renderFilteredTasks(filteredTasks);
+    renderFilteredTasks(filteredTasks);
 }
 
 function renderFilteredTasks(filteredTasks) {
@@ -867,7 +881,7 @@ Hi, please refer following task:
 
 Project Name: ${cells[2].innerText}
 
-Task Type: ${cells[3].innerText}
+
 Assigned Date: ${cells[5].innerText}
 Assigned Workhours: ${cells[9].innerText}
 -
@@ -1090,7 +1104,59 @@ alert('Press ' + (navigator.userAgent.toLowerCase().indexOf('mac') !== -1 ? 'Cmd
 }
 });
 
+function summarizeFilteredTasks() {
+    // Get all checkboxes
+    const checkboxes = document.querySelectorAll('.task-checkbox');
 
+    // Array to hold selected tasks
+    const selectedTasks = [];
+
+    // Iterate through checkboxes to get selected rows
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            // Find the row corresponding to the checkbox
+            const row = checkbox.closest('tr');
+
+            // Extract task details from the row
+            const task = {
+                projectName: row.cells[2].innerText,
+                status: row.cells[7].innerText,
+                comment: row.cells[8].innerText,
+                dueDate: row.cells[6].innerText,
+            };
+
+            selectedTasks.push(task);
+        }
+    });
+
+    if (selectedTasks.length === 0) {
+        alert('No tasks selected.');
+        return;
+    }
+
+    // Create the summary text
+    let summaryText = '--- Summary Report for Selected Tasks ---\n\n';
+    selectedTasks.forEach(task => {
+        summaryText += `**Project Name:** ${task.projectName}\n`;
+        summaryText += `- **Status:** ${task.status}\n`;
+        summaryText += `- **Comment:** ${task.comment}\n`;
+        summaryText += `- **Due Date:** ${task.dueDate}\n\n`;
+    });
+
+    // Copy the summary text to clipboard
+    copyToClipboard(summaryText);
+
+    alert('Summary has been copied to the clipboard.');
+}
+
+function copyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+}
 
 
 </script>
